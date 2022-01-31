@@ -8,6 +8,7 @@
     "description": "my first socket.io app",
     "dependencies": {
         "express": "^4.17.2",
+        "moment": "^2.29.1",
         "socket.io": "^4.4.1"
     },
     "devDependencies": {

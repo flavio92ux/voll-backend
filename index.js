@@ -10,7 +10,9 @@ app.get('/', (req, res) => {
   res.send('<h1>Hey Socket.io</h1>');
 });
 
-io.on('connection', (socket) => {
+require('./sockets/chatSocket')(io);
+
+/* io.on('connection', (socket) => {
 
   console.log('a user connected');
 
@@ -21,7 +23,7 @@ io.on('connection', (socket) => {
   socket.on('my message', (msg) => {
     io.emit('my broadcast', `server: ${msg}`);
   });
-});
+}); */
 
 http.listen(3000, () => {
   console.log('Ouvindo a porta 3000!');
