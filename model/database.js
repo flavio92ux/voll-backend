@@ -2,14 +2,11 @@ const mysql = require("mysql2");
 let db = null;
 class DB {
   constructor() {
-    db = mysql.createConnection({
+    db = mysql.createPool({
       host: "us-cdbr-east-04.cleardb.com",
       user: "b7622c6d4e4701",
       password: "bf807c1b",
       database: "heroku_3b98d95500ebbe2",
-    });
-    db.connect(function (err) {
-      if (err) console.log(err);
     });
   }
 
