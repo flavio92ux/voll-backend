@@ -1,10 +1,18 @@
 const moment = require('moment');
+const DataBase = require("../model/database");
+const db = new DataBase();
 
 const messageMoment = moment().format('DD-MM-yyyy HH:mm:ss A');
 const userList = [];
 
-const sendMessage = (chatMessage, nickname, io) => {
+const sendMessage = async (chatMessage, nickname, io) => {
   io.emit('message', `${messageMoment} - ${nickname}: ${chatMessage}`);
+  const data = {
+    message: chatMessage,
+    moment: messageMoment,
+    nick: nickname,
+  };
+  await db.storeUserMessage(data);
 };
 
 const replaceUser = (oldUser, newUser, io) => {
@@ -35,8 +43,8 @@ module.exports = (io) => {
     io.emit('addNewUser', randomNick);
     io.emit('refreshList', userList);
 
-    socket.on('message', ({ chatMessage, nickname }) => {
-      sendMessage(chatMessage, nickname, io);      
+    socket.on('message', async ({ chatMessage, nickname }) => {
+      await sendMessage(chatMessage, nickname, io);      
     });
 
     socket.on('replaceUser', (oldUser, newUser) => replaceUser(oldUser, newUser, io));
