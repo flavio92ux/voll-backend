@@ -16,8 +16,8 @@ const sendMessage = async (chatMessage, nickname, io) => {
 };
 
 const replaceUser = (oldUser, newUser, io) => {
-  userList.forEach((item, index) => {
-    if (item === oldUser) userList[index] = newUser;
+  userList.forEach(({ nickname }, index) => {
+    if (nickname === oldUser) userList[index].nickname = newUser;
   });
   io.emit('refreshList', userList);
 };
@@ -37,16 +37,16 @@ module.exports = (io) => {
 
     console.log(`Client ${socket.id} connected`);
 
-    /* userList.push({ id: socket.id, nickname: randomNick }); */
+    userList.push({ id: socket.id, nickname: randomNick });
 
-    io.emit('addNewUser', randomNick);
+    io.emit('addNewUser', userList[userList.length - 1]);
     io.emit('refreshList', userList);
 
     socket.on('message', async ({ chatMessage, nickname }) => {
       await sendMessage(chatMessage, nickname, io);      
     });
 
-    socket.on('replaceUser', (oldUser, newUser) => replaceUser(oldUser, newUser, io));
+    socket.on('replaceUser', ({ oldUser, newUser }) => replaceUser(oldUser, newUser, io));
 
     socket.on('disconnect', () => disconnect(socket, io));
   });
