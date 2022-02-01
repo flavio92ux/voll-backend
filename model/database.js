@@ -1,12 +1,14 @@
 const mysql = require("mysql2");
+require('dotenv').config();
+
 let db = null;
 class DB {
   constructor() {
     db = mysql.createPool({
-      host: "us-cdbr-east-04.cleardb.com",
-      user: "b7622c6d4e4701",
-      password: "bf807c1b",
-      database: "heroku_3b98d95500ebbe2",
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
     });
   }
 

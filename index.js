@@ -5,7 +5,7 @@ const db = new DataBase();
 var cors = require('cors');
 const io = require('socket.io')(http, {
   cors: {
-    origins: ['http://localhost:8080']
+    origins: "*"
   }
 });
 
@@ -18,6 +18,8 @@ app.get('/', async (_req, res) => {
 
 require('./sockets/chatSocket')(io);
 
-http.listen(3000, () => {
-  console.log('Ouvindo a porta 3000!');
+const PORT = process.env.PORT || 3000;
+
+http.listen(PORT, () => {
+  console.log(`Ouvindo a porta ${PORT}!`);
 });
