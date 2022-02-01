@@ -23,6 +23,7 @@ const replaceUser = (oldUser, newUser, io) => {
 };
 
 const disconnect = (socket, io) => {
+  console.log(`Client ${socket.id} diconnected`);
   userList.forEach((user, i) => {
     if (user.id === socket.id) userList.splice(i, 1);
   });
@@ -34,12 +35,10 @@ module.exports = (io) => {
     const { id } = socket;
     const randomNick = id.substr(0, 5);
 
-    socket.on('addArray', (user) => {
-      if (!userList.includes(user)) {
-        userList.push(user);
-      }
-    });
- 
+    console.log(`Client ${socket.id} connected`);
+
+    /* userList.push({ id: socket.id, nickname: randomNick }); */
+
     io.emit('addNewUser', randomNick);
     io.emit('refreshList', userList);
 
