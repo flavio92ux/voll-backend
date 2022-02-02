@@ -24,11 +24,6 @@ docker-compose up
 npm install
 ```
 
-- Crie o Database local:
-```bash
-node createDB.js
-```
-
 - Inicialize o projeto:
 ```bash
 npm start
