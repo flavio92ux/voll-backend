@@ -15,7 +15,7 @@ class DB {
   storeUserMessage(data) {
     return new Promise((resolve, reject) => {
       db.query(
-        "INSERT INTO webchat (message, moment, nick) VALUES (?,?,?)",
+        `INSERT INTO ${process.env.MYSQL_TABLE} (message, moment, nick) VALUES (?,?,?)`,
         [data.message, data.moment, data.nick],
         function (err, rows) {
           if (err) reject(new Error(err));
@@ -28,7 +28,7 @@ class DB {
   fetchMessages() {
     return new Promise((resolve, reject) => {
       db.query(
-        "SELECT * FROM webchat ORDER BY 'id' ASC",
+        `SELECT * FROM ${process.env.MYSQL_TABLE} ORDER BY 'id' ASC`,
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows);

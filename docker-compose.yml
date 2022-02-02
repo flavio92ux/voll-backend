@@ -1,0 +1,33 @@
+version: '3'
+services:
+  node_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - mysqlsrv
+    depends_on:
+      - mysqlsrv
+    networks:
+      - mysql-compose-network
+
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_HOST: "mysqlsrv"
+      MYSQL_DATABASE: "ExampleDB"
+      MYSQL_USER: "flavio"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
+    ports:
+      - "3313:3306"
+    volumes:
+      - ~/chat/Volumes:/var/lib/mysql
+    networks:
+      - mysql-compose-network
+
+networks:
+  mysql-compose-network:
+    driver: bridge
