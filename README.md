@@ -2,7 +2,7 @@
 
 **Para executar o projeto:**
 
-**1 - Com docker-composer (recomendado)**
+**1 - Com docker-composer**
 
 ```bash
 docker-compose up
@@ -22,6 +22,11 @@ docker-compose up
 - Instale as dependências:
 ```bash
 npm install
+```
+
+- Crie o Database local:
+```bash
+node createDB.js
 ```
 
 - Inicialize o projeto:
