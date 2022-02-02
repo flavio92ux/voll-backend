@@ -3,21 +3,25 @@
 Para executar o projeto:
 
 **docker (recomendado)**
-- Rode o servidor:
+
 ```bash
 docker-compose up
 ```
 
-**localmente**
+**Rodando localmente**
 
 - Configure as variáveis de ambiente;
+
+```bash
+.env
+```
 
 - Instale as dependências:
 ```bash
 npm install
 ```
 
-- Rode o servidor:
+- Inicialize o projeto:
 ```bash
 npm start
 ```
