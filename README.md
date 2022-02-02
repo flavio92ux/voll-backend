@@ -1,14 +1,17 @@
 # WebChat - BackEnd
 
-Para executar o projeto:
+**Para executar o projeto:**
 
-**Utilizando ambiente virtual com docker-composer (recomendado)**
+**1 - Utilizando ambiente virtual com docker-composer (recomendado)**
 
 ```bash
 docker-compose up
 ```
 
-**Para rodar localmente**
+**OU**
+
+
+**2 - Sistemas Linux**
 
 - Configure as variáveis de ambiente
 
