@@ -1,8 +1,11 @@
-const moment = require('moment');
 const DataBase = require("../model/database");
 const db = new DataBase();
 
-const messageMoment = moment().format('DD-MM-yyyy HH:mm:ss A');
+const today = new Date();
+const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+const messageMoment = `${date} - ${time}`;
 const userList = [];
 
 const sendMessage = async (chatMessage, nickname, io) => {
