@@ -2,7 +2,8 @@ const DataBase = require("../model/database");
 const moment = require('moment');
 const db = new DataBase();
 
-const local_time = moment.utc().local().format('DD-MM-YYYY HH:mm');
+const utc_time = moment.utc().local().format('DD-MM-YYYY HH:mm');
+const local_time =  moment(utc_time, 'DD-MM-YYYY HH:mm').subtract("+03:00").format('DD-MM-YYYY HH:mm');
 
 const userList = [];
 
