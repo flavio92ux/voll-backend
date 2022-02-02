@@ -2,15 +2,15 @@
 
 Para executar o projeto:
 
-**docker (recomendado)**
+**Utilizando ambiente virtual com docker-composer (recomendado)**
 
 ```bash
 docker-compose up
 ```
 
-**Rodando localmente**
+**Para rodar localmente**
 
-- Configure as variáveis de ambiente;
+- Configure as variáveis de ambiente
 
 ```bash
 .env
