@@ -28,7 +28,7 @@ class DB {
   fetchMessages() {
     return new Promise((resolve, reject) => {
       db.query(
-        "SELECT * from webchat order by moment asc",
+        "SELECT * FROM webchat ORDER BY 'id' ASC",
         function (err, rows) {
           if (err) reject(err);
           else resolve(rows);
