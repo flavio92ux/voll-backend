@@ -2,10 +2,15 @@ const DataBase = require("../model/database");
 const db = new DataBase();
 
 const today = new Date();
-const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
-const messageMoment = `${date} - ${time}`;
+today.setDate(today.getDate() + 20);
+
+const date = ('0' + today.getDate()).slice(-2) + '-'
+             + ('0' + (today.getMonth()+1)).slice(-2) + '-'
+             + today.getFullYear();
+
+const messageMoment = `${date} ${time}`;
 const userList = [];
 
 const sendMessage = async (chatMessage, nickname, io) => {
