@@ -1,23 +1,16 @@
 const DataBase = require("../model/database");
+const moment = require('moment');
 const db = new DataBase();
 
-const today = new Date();
-const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+const local_time = moment.utc().local().format('DD-MM-YYYY HH:mm');
 
-today.setDate(today.getDate() + 20);
-
-const date = ('0' + today.getDate()).slice(-2) + '-'
-             + ('0' + (today.getMonth()+1)).slice(-2) + '-'
-             + today.getFullYear();
-
-const messageMoment = `${date} ${time}`;
 const userList = [];
 
 const sendMessage = async (chatMessage, nickname, io) => {
-  io.emit('message', `${messageMoment} - ${nickname}: ${chatMessage}`);
+  io.emit('message', `${local_time} - ${nickname}: ${chatMessage}`);
   const data = {
     message: chatMessage,
-    moment: messageMoment,
+    moment: local_time,
     nick: nickname,
   };
   await db.storeUserMessage(data);
