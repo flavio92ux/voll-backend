@@ -2,7 +2,7 @@
 
 **Para executar o projeto:**
 
-**1 - Utilizando ambiente virtual com docker-composer (recomendado)**
+**1 - Com docker-composer (recomendado)**
 
 ```bash
 docker-compose up
